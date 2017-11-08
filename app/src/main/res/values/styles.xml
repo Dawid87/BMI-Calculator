@@ -9,7 +9,7 @@
     </style>
 
     <style name="MyTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:background">@drawable/bg</item>
+        <item name="android:background">@color/colorCustom2</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="android:textColorPrimary">@color/colorCustom</item>
         <item name="android:textAlignment">center</item>
