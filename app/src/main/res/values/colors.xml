@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#9A2750</color>
     <color name="colorAccent">#5060BB</color>
     <color name="colorCustom">#f4f4f4</color>
+    <color name="colorCustom2">#00f4f4f4</color>
     <color name="colorFont">#3b3e40</color>
     <color name="colorRed">#69140E</color>
     <color name="colorOrange">#A44200</color>
