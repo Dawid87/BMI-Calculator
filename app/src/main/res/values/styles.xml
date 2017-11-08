@@ -11,7 +11,7 @@
     <style name="MyTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:background">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="android:textColorPrimary">@color/colorCustom2</item>
+        <item name="android:textColorPrimary">@color/colorCustom</item>
         <item name="android:textAlignment">center</item>
 
     </style>
@@ -20,7 +20,7 @@
         <item name="android:background">@color/colorAccent</item>
         <item name="overlapAnchor">false</item>
         <item name="android:dropDownVerticalOffset">-4dp</item>
-        <item name="android:textColorPrimary">@color/colorCustom2</item>
+        <item name="android:textColorPrimary">@color/colorCustom</item>
     </style>
 
 

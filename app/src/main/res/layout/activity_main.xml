@@ -23,7 +23,7 @@
             android:id="@+id/imageView6"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            ads:srcCompat="@drawable/background"
+            ads:srcCompat="@drawable/bg"
             android:gravity="center"
             android:alpha="0.95"
             android:scaleType="fitXY"/>
