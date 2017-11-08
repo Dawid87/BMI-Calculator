@@ -2,7 +2,6 @@ package com.dawid.dawiddelimata.bmicalculator_ver14;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,9 +12,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -47,6 +43,7 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
         MobileAds.initialize(this, "ca-app-pub-1989255292557669/7509769377");                           // Initialize of Ads
         buttonListenerMethod();
 
+        AppRater.app_launched(this);
         //createShortCut();
         //shareMethod();
 
