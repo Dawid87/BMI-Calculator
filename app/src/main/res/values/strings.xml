@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">BMI Calculator</string>
+    <string name="settings_name">Settings</string>
+    <string name="label_long_screen">BMI Calculator</string>
+    <string name="label_short_screen">BMI Calculator</string>
+
+</resources>
