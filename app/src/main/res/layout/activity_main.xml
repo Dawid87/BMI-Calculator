@@ -61,30 +61,15 @@
 
                 <EditText
                     android:id="@+id/heightInput"
-                    android:layout_width="84dp"
+                    android:layout_width="284dp"
                     android:layout_height="54dp"
-                    android:textAlignment="center"
-                    android:ems="10"
-                    android:inputType="numberDecimal"
                     android:layout_above="@+id/imageView2"
-                    android:layout_centerHorizontal="true"
+                    android:layout_toStartOf="@+id/imageView"
+                    android:ems="10"
+                    android:hint="Height"
                     android:imeOptions="actionSend"
-
-                    />
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:textColor="@color/colorFont"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginLeft="24dp"
-                    android:text="HEIGHT"
-                    android:layout_alignBaseline="@+id/heightInput"
-                    android:layout_alignBottom="@+id/heightInput"
-                    android:layout_alignStart="@+id/adView"
-                    tools:ignore="NotSibling"
-                    android:layout_alignLeft="@+id/adView" />
+                    android:inputType="numberDecimal"
+                    android:textAlignment="textStart" />
 
                 <ImageView
                     android:id="@+id/imageView2"
@@ -98,27 +83,17 @@
 
                 <EditText
                     android:id="@+id/weightInput"
-                    android:textColor="@color/colorFont"
-                    android:layout_width="84dp"
+                    android:layout_width="284dp"
                     android:layout_height="54dp"
-                    android:textAlignment="center"
-                    android:ems="10"
-                    android:inputType="numberDecimal"
                     android:layout_alignBottom="@+id/imageView2"
                     android:layout_alignStart="@+id/heightInput"
-                    tools:ignore="RtlCompat"
-                    android:imeOptions="actionSend"/>
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/textView2"
-                    android:layout_alignTop="@+id/weightInput"
-                    android:layout_marginTop="16dp"
+                    android:ems="10"
+                    android:hint="Weight"
+                    android:imeOptions="actionSend"
+                    android:inputType="numberDecimal"
+                    android:textAlignment="textStart"
                     android:textColor="@color/colorFont"
-                    android:text="WEIGHT"
-                    android:layout_alignLeft="@+id/textView2" />
+                    tools:ignore="RtlCompat" />
 
                 <ImageButton
                     android:id="@+id/imageButton"
@@ -143,26 +118,16 @@
 
                 <EditText
                     android:id="@+id/bmiSum"
-                    android:layout_width="84dp"
+                    android:layout_width="284dp"
                     android:layout_height="54dp"
-                    android:textAlignment="center"
+                    android:textAlignment="textStart"
                     android:ems="10"
+                    android:hint="Your BMI"
                     android:inputType="numberDecimal"
                     android:layout_alignTop="@+id/imageView3"
                     android:layout_alignStart="@+id/weightInput"
                     android:layout_alignLeft="@+id/weightInput"
                     android:imeOptions="actionSend"/>
-
-                <TextView
-                    android:id="@+id/textView10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorFont"
-                    android:text="YOUR BMI"
-                    android:layout_alignBaseline="@+id/bmiSum"
-                    android:layout_alignBottom="@+id/bmiSum"
-                    android:layout_alignStart="@+id/textView"
-                    android:layout_alignLeft="@+id/textView" />
 
                 <EditText
                     android:id="@+id/bmiCat"
