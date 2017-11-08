@@ -74,7 +74,10 @@
                     android:hint="Height"
                     android:imeOptions="actionSend"
                     android:inputType="numberDecimal"
-                    android:textAlignment="center" />
+                    android:textColor="@color/colorCustom"
+                    android:textColorHint="@color/hintColor"
+                    android:textAlignment="center"
+                    android:backgroundTint="@color/colorCustom" />
 
                 <ImageView
                     android:id="@+id/imageView2"
@@ -97,9 +100,10 @@
                     android:imeOptions="actionSend"
                     android:inputType="numberDecimal"
                     android:textAlignment="center"
-                    android:textColor="@color/colorFont"
+                    android:textColor="@color/colorCustom"
+                    android:textColorHint="@color/hintColor"
                     tools:ignore="RtlCompat"
-                    />
+                    android:backgroundTint="@color/colorCustom" />
 
                 <ImageButton
                     android:id="@+id/imageButton"
@@ -133,7 +137,10 @@
                     android:hint="Your BMI"
                     android:imeOptions="actionSend"
                     android:inputType="numberDecimal"
-                    android:textAlignment="center" />
+                    android:textColor="@color/colorCustom"
+                    android:textColorHint="@color/hintColor"
+                    android:textAlignment="center"
+                    android:backgroundTint="@color/colorCustom"/>
 
                 <EditText
                     android:id="@+id/bmiCat"
@@ -142,10 +149,13 @@
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:textAlignment="center"
-                    android:text="......."
+                    android:hint="BMI Category"
+                    android:textColor="@color/colorCustom"
+                    android:textColorHint="@color/hintColor"
                     android:layout_below="@+id/imageView3"
                     android:layout_centerHorizontal="true"
-                    android:imeOptions="actionSend"/>
+                    android:imeOptions="actionSend"
+                    android:backgroundTint="@color/colorCustom"/>
 
 
                 <ImageView
