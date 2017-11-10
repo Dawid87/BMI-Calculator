@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
     //LikeView likeView;
 
     AdView mAdview;
+    File imagePath;
 
     public Bitmap takeScreenshot() {
         View rootView = findViewById(android.R.id.content).getRootView();
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
     }
 
     public void saveBitmap(Bitmap bitmap) {
-        File imagePath = new File(getExternalStorageDirectory() + "/screenshot.png");
+        imagePath = new File(getExternalStorageDirectory() + "/screenshot.png");
         FileOutputStream fos;
         try {
             fos = new FileOutputStream(imagePath);
@@ -60,25 +61,27 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
             Log.e("GREC", e.getMessage(), e);
         } catch (IOException e) {
             Log.e("GREC", e.getMessage(), e);
-        }}
+        }
+    }
 
     public void share(View v) {
         Bitmap bitmap = takeScreenshot();
         saveBitmap(bitmap);
-        //shareIt();
+        Toast.makeText(this, "CLICKED", Toast.LENGTH_SHORT).show();
+        shareIt();
     }
 
-//    private void shareIt() {
-//        Uri uri = Uri.fromFile(getExternalStorageDirectory());
-//        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-//        sharingIntent.setType("image/*");
-//        String shareBody = "My highest score with screen shot";
-//        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "My Catch score");
-//        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-//        sharingIntent.putExtra(Intent.EXTRA_STREAM, uri);
-//
-//        startActivity(Intent.createChooser(sharingIntent, "Share via"));
-//    }
+    private void shareIt() {
+        Uri uri = Uri.fromFile(imagePath);
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("image/*");
+        String shareBody = "My highest score with screen shot";
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "My Catch score");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+        sharingIntent.putExtra(Intent.EXTRA_STREAM, uri);
+
+        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+    }
 
 //    public void share(View view){
 //
