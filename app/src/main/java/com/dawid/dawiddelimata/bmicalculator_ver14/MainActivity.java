@@ -2,11 +2,15 @@ package com.dawid.dawiddelimata.bmicalculator_ver14;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,12 +28,98 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import static android.os.Environment.getExternalStorageDirectory;
+
 public class MainActivity extends AppCompatActivity  implements BillingProcessor.IBillingHandler  {
 
     BillingProcessor bp;
     //LikeView likeView;
 
     AdView mAdview;
+
+    public Bitmap takeScreenshot() {
+        View rootView = findViewById(android.R.id.content).getRootView();
+        rootView.setDrawingCacheEnabled(true);
+        return rootView.getDrawingCache();
+    }
+
+    public void saveBitmap(Bitmap bitmap) {
+        File imagePath = new File(getExternalStorageDirectory() + "/screenshot.png");
+        FileOutputStream fos;
+        try {
+            fos = new FileOutputStream(imagePath);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            fos.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            Log.e("GREC", e.getMessage(), e);
+        } catch (IOException e) {
+            Log.e("GREC", e.getMessage(), e);
+        }}
+
+    public void share(View v) {
+        Bitmap bitmap = takeScreenshot();
+        saveBitmap(bitmap);
+        shareIt();
+    }
+
+    private void shareIt() {
+        Uri uri = Uri.fromFile(getExternalStorageDirectory());
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("image/*");
+        String shareBody = "My highest score with screen shot";
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "My Catch score");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+        sharingIntent.putExtra(Intent.EXTRA_STREAM, uri);
+
+        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+    }
+
+//    public void share(View view){
+//
+//        View screenView = view.getRootView();
+//        screenView.setDrawingCacheEnabled(true);
+//        Bitmap bitmap = Bitmap.createBitmap(screenView.getDrawingCache());
+//        screenView.setDrawingCacheEnabled(false);
+//        return bitmap;
+
+//        Bitmap bitmap = takeScreenshot();
+//        saveBitmap(bitmap);
+//        shareIt();
+//        Intent intent = new Intent(Intent.ACTION_SEND);
+//        intent.setType("text/plain");
+//        String shareBody = "Your body here";
+//        String shareSub = "Your Subject here";
+//        intent.putExtra(Intent.EXTRA_SUBJECT, shareBody);
+//        intent.putExtra(Intent.EXTRA_TEXT, shareSub);
+//        startActivity(Intent.createChooser(intent, "Share using"));
+
+
+//    public Bitmap takeScreenshot() {
+//        View rootView = findViewById(android.R.id.content).getRootView();
+//        rootView.setDrawingCacheEnabled(true);
+//        return rootView.getDrawingCache();
+//    }
+//
+//    public void saveBitmap(Bitmap bitmap) {
+//        imagePath = new File(Environment.getExternalStorageDirectory() + "/screenshot.png");
+//        FileOutputStream fos;
+//        try {
+//            fos = new FileOutputStream(imagePath);
+//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+//            fos.flush();
+//            fos.close();
+//        } catch (FileNotFoundException e) {
+//            Log.e("GREC", e.getMessage(), e);
+//        } catch (IOException e) {
+//            Log.e("GREC", e.getMessage(), e);
+//        }
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +134,7 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
         buttonListenerMethod();
 
         AppRater.app_launched(this);
+
         //createShortCut();
         //shareMethod();
 
@@ -67,6 +158,8 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
 
 
     }
+
+
 
     // Create three dot toolbar menu
     @Override
@@ -121,6 +214,9 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
                 // Hide virtual keyboard if button pressed
                 InputMethodManager inputManager = (InputMethodManager)
                         getSystemService(Context.INPUT_METHOD_SERVICE);
