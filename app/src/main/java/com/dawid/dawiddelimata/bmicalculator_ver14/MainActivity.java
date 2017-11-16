@@ -273,6 +273,11 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
         });
     }
 
+
+//    public ProgressBar progressBar;
+//    progressBar = new ProgressBar(context);
+//    progressBar.show();
+
     @Override
     public void onProductPurchased(@NonNull String productId, @Nullable TransactionDetails details) {
         Toast.makeText(this, "You've purchased", Toast.LENGTH_SHORT).show();
