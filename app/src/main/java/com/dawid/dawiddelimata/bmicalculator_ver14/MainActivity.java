@@ -290,7 +290,7 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
                 final TextView bmiCat = (TextView) findViewById(R.id.bmiCat);
                 bmiCat.setText(bmi_cat);
 
-               
+
 
 
             }
