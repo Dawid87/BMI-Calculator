@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,8 +42,15 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
     BillingProcessor bp;
     //LikeView likeView;
 
+//    private ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar2);;
+//
+//    private int progressStatus = 0;
+//
+//    private Handler handler = new Handler();
+
     AdView mAdview;
     File imagePath;
+
 
     public Bitmap takeScreenshot() {
         View rootView = findViewById(android.R.id.content).getRootView();
@@ -157,6 +166,14 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
         getSupportActionBar().setLogo(R.drawable.scale);                                                // Set toolbar icon
 
 
+//        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar2);
+//
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run(){
+//
+//            }
+//        }).start();
 
 
 
@@ -220,6 +237,9 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
 
 
 
+
+
+
                 // Hide virtual keyboard if button pressed
                 InputMethodManager inputManager = (InputMethodManager)
                         getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -269,9 +289,18 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
 
                 final TextView bmiCat = (TextView) findViewById(R.id.bmiCat);
                 bmiCat.setText(bmi_cat);
+
+               
+
+
             }
+
+
         });
+
+
     }
+
 
 
 //    public ProgressBar progressBar;
