@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -42,18 +41,11 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
     private Handler handler = new Handler();
 
     BillingProcessor bp;
-    //LikeView likeView;
-
-//    private ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar2);;
-//
-//    private int progressStatus = 0;
-//
-//    private Handler handler = new Handler();
 
     AdView mAdview;
     File imagePath;
 
-
+    // Take screen shot of display and share in social media
     public Bitmap takeScreenshot() {
         View rootView = findViewById(android.R.id.content).getRootView();
         rootView.setDrawingCacheEnabled(true);
@@ -94,46 +86,7 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
         startActivity(Intent.createChooser(sharingIntent, "Share via"));
     }
 
-//    public void share(View view){
-//
-//        View screenView = view.getRootView();
-//        screenView.setDrawingCacheEnabled(true);
-//        Bitmap bitmap = Bitmap.createBitmap(screenView.getDrawingCache());
-//        screenView.setDrawingCacheEnabled(false);
-//        return bitmap;
 
-//        Bitmap bitmap = takeScreenshot();
-//        saveBitmap(bitmap);
-//        shareIt();
-//        Intent intent = new Intent(Intent.ACTION_SEND);
-//        intent.setType("text/plain");
-//        String shareBody = "Your body here";
-//        String shareSub = "Your Subject here";
-//        intent.putExtra(Intent.EXTRA_SUBJECT, shareBody);
-//        intent.putExtra(Intent.EXTRA_TEXT, shareSub);
-//        startActivity(Intent.createChooser(intent, "Share using"));
-
-
-//    public Bitmap takeScreenshot() {
-//        View rootView = findViewById(android.R.id.content).getRootView();
-//        rootView.setDrawingCacheEnabled(true);
-//        return rootView.getDrawingCache();
-//    }
-//
-//    public void saveBitmap(Bitmap bitmap) {
-//        imagePath = new File(Environment.getExternalStorageDirectory() + "/screenshot.png");
-//        FileOutputStream fos;
-//        try {
-//            fos = new FileOutputStream(imagePath);
-//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-//            fos.flush();
-//            fos.close();
-//        } catch (FileNotFoundException e) {
-//            Log.e("GREC", e.getMessage(), e);
-//        } catch (IOException e) {
-//            Log.e("GREC", e.getMessage(), e);
-//        }
-//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,15 +102,12 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
 
         AppRater.app_launched(this);
 
-        //createShortCut();
-        //shareMethod();
-
         bp = new BillingProcessor(this, "com.dawid.dawiddelimata.bmicalculator_ver14", this);                                                    // Add billing processor. Instead of licence null used for test
 
         // Add AdMob advertisement banner
         mAdview = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        //AdRequest adRequest = new AdRequest.Builder().addTestDevice("1DB7C92893CB70AD23614BEAC2C07861").build();
+        //AdRequest adRequest = new AdRequest.Builder().addTestDevice("1DB7C92893CB70AD23614BEAC2C07861").build();  //advertisement request for test
         mAdview.loadAd(adRequest);
 
         // Displaying created bar in xml
@@ -166,17 +116,7 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
 
         getSupportActionBar().setTitle("    BMI Calculator");                                           // Set name of new toolbar
         getSupportActionBar().setLogo(R.drawable.scale);                                                // Set toolbar icon
-
-
-
-
-
-
-
-
     }
-
-
 
     // Create three dot toolbar menu
     @Override
@@ -217,7 +157,6 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
                             break;
                     }
                 }
-
                 return false;
             }
 
@@ -231,12 +170,6 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
-
-
-
                 // Hide virtual keyboard if button pressed
                 InputMethodManager inputManager = (InputMethodManager)
                         getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -287,13 +220,13 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
                 final TextView bmiCat = (TextView) findViewById(R.id.bmiCat);
                 bmiCat.setText(bmi_cat);
 
+                // ProgressBar logic function
                 final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar2);
 
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                       final int bmi2 = (int) bmi + 24;
-
+                       final int bmi2 = (int) bmi + 24;                                 //Change double bmi to int
                         if (bmi2 < 100){
                             handler.post(new Runnable() {
                                 @Override
@@ -309,15 +242,7 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
 
 
         });
-
-
     }
-
-
-
-//    public ProgressBar progressBar;
-//    progressBar = new ProgressBar(context);
-//    progressBar.show();
 
     @Override
     public void onProductPurchased(@NonNull String productId, @Nullable TransactionDetails details) {
@@ -353,6 +278,4 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
         }
         super.onDestroy();
     }
-
-
 }
