@@ -1,11 +1,18 @@
 package com.dawid.dawiddelimata.bmicalculator_ver14;
 
+import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +23,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -33,6 +42,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Date;
 
 import static android.os.Environment.getExternalStorageDirectory;
 
@@ -46,45 +56,194 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
     File imagePath;
 
     // Take screen shot of display and share in social media
-    public Bitmap takeScreenshot() {
-        View rootView = findViewById(android.R.id.content).getRootView();
-        rootView.setDrawingCacheEnabled(true);
-        return rootView.getDrawingCache();
-    }
+//    private Bitmap takeScreenshot() {
+//        View rootView = findViewById(android.R.id.content).getRootView();
+//        rootView.setDrawingCacheEnabled(true);
+//        return rootView.getDrawingCache();
+//    }
 
-    public void saveBitmap(Bitmap bitmap) {
-        imagePath = new File(getExternalStorageDirectory() + "/screenshot.png");
-        FileOutputStream fos;
-        try {
-            fos = new FileOutputStream(imagePath);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-            fos.flush();
-            fos.close();
-        } catch (FileNotFoundException e) {
-            Log.e("GREC", e.getMessage(), e);
-        } catch (IOException e) {
-            Log.e("GREC", e.getMessage(), e);
-        }
-    }
+//    private  Bitmap takeScreenshot(View view, Bitmap.Config quality) {
+//        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), quality);
+//        Canvas canvas = new Canvas(bitmap);
+//
+//        Drawable backgroundDrawable = view.getBackground();
+//        if (backgroundDrawable != null) {
+//            backgroundDrawable.draw(canvas);
+//        } else {
+//            canvas.drawColor(Color.WHITE);
+//        }
+//        view.draw(canvas);
+//
+//        return bitmap;
+//    }
 
-    public void share(View v) {
-        Bitmap bitmap = takeScreenshot();
-        saveBitmap(bitmap);
-        Toast.makeText(this, "CLICKED", Toast.LENGTH_SHORT).show();
-        shareIt();
-    }
+//    private void takeScreenshot() {
+//        Date now = new Date();
+//        android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now);
 
-    private void shareIt() {
-        Uri uri = Uri.fromFile(imagePath);
-        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-        sharingIntent.setType("image/*");
-        String shareBody = "My highest score with screen shot";
-        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "My Catch score");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-        sharingIntent.putExtra(Intent.EXTRA_STREAM, uri);
+//        try {
+//            // image naming and path  to include sd card  appending name you choose for file
+//            String mPath = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg";
+//
+//            // create bitmap screen capture
+//            View v1 = getWindow().getDecorView().getRootView();
+//            v1.setDrawingCacheEnabled(true);
+//            Bitmap bitmap = Bitmap.createBitmap(v1.getDrawingCache());
+//            v1.setDrawingCacheEnabled(false);
+//
+//            File imageFile = new File(mPath);
+//
+//            FileOutputStream outputStream = new FileOutputStream(imageFile);
+//            int quality = 100;
+//            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream);
+//            outputStream.flush();
+//            outputStream.close();
+//
+//            //openScreenshot(imageFile);
+//        } catch (Throwable e) {
+//            // Several error may come out with file handling or DOM
+//            e.printStackTrace();
+//        }
+//    }
 
-        startActivity(Intent.createChooser(sharingIntent, "Share via"));
-    }
+
+//    public void saveBitmap(Bitmap bitmap) {
+//        imagePath = new File(getExternalStorageDirectory() + "/screenshot.png");
+//        FileOutputStream fos;
+//        try {
+//            fos = new FileOutputStream(imagePath);
+//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+//            fos.flush();
+//            fos.close();
+//        } catch (FileNotFoundException e) {
+//            Log.e("GREC", e.getMessage(), e);
+//        } catch (IOException e) {
+//            Log.e("GREC", e.getMessage(), e);
+//        }
+//    }
+//
+//    public void share(View v) {
+//        Bitmap bitmap = takeScreenshot();
+//        saveBitmap(bitmap);
+//        Toast.makeText(this, "CLICKED", Toast.LENGTH_SHORT).show();
+//        shareIt();
+//    }
+
+//    public Bitmap getScreenShot(View view) {
+//        View screenView = view.getRootView();
+//        screenView.setDrawingCacheEnabled(true);
+//        Bitmap bitmap = Bitmap.createBitmap(screenView.getDrawingCache());
+//        screenView.setDrawingCacheEnabled(false);
+//        return bitmap;
+//    }
+//
+//    public static void store(Bitmap bm, String fileName){
+//        final String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Screenshots";
+//        File dir = new File(dirPath);
+//        if(!dir.exists())
+//            dir.mkdirs();
+//        File file = new File(dirPath, fileName);
+//        try {
+//            FileOutputStream fOut = new FileOutputStream(file);
+//            bm.compress(Bitmap.CompressFormat.PNG, 85, fOut);
+//            fOut.flush();
+//            fOut.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    private void shareImage(File file){
+//        Uri uri = Uri.fromFile(file);
+//        Intent intent = new Intent();
+//        intent.setAction(Intent.ACTION_SEND);
+//        intent.setType("image/*");
+//
+//        intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
+//        intent.putExtra(android.content.Intent.EXTRA_TEXT, "");
+//        intent.putExtra(Intent.EXTRA_STREAM, uri);
+//        try {
+//            startActivity(Intent.createChooser(intent, "Share Screenshot"));
+//        } catch (ActivityNotFoundException e) {
+//            Toast.makeText(this, "No App Available", Toast.LENGTH_SHORT).show();
+//        }
+//    }
+//
+//
+//
+//    private void shareIt() {
+//        Uri uri = Uri.fromFile(imagePath);
+//        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+//        sharingIntent.setType("image/*");
+//        String shareBody = "My highest score with screen shot";
+//        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "My Catch score");
+//        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+//        sharingIntent.putExtra(Intent.EXTRA_STREAM, uri);
+//
+//        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+//    }
+
+//    ImageButton share = (ImageButton)findViewById(R.id.share);
+//    share.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            Bitmap bitmap = takeScreenshot();
+//            saveBitmap(bitmap);
+//            shareIt();
+//        }
+//    });
+
+
+//    public void share(View v){
+//        //ImageButton share = (ImageButton) findViewById(R.id.share);
+//    Intent share = new Intent(this, MainActivity.class);
+//    if (share != null) {
+//        startActivity(share);
+//        Bitmap bitmap = takeScreenshot();
+//        saveBitmap(bitmap);
+//        shareIt();
+//
+//    }
+//    }
+//
+//
+//
+//    public Bitmap takeScreenshot() {
+//        View rootView = findViewById(android.R.id.content).getRootView();
+//        rootView.setDrawingCacheEnabled(true);
+//        return rootView.getDrawingCache();
+//
+//    }
+//
+//    public void saveBitmap(Bitmap bitmap) {
+//        imagePath = new File(Environment.getExternalStorageDirectory() + "/screenshot.png");
+//        FileOutputStream fos;
+//        try {
+//            fos = new FileOutputStream(imagePath);
+//            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+//            fos.flush();
+//            fos.close();
+//        } catch (FileNotFoundException e) {
+//            Log.e("GREC", e.getMessage(), e);
+//        } catch (IOException e) {
+//            Log.e("GREC", e.getMessage(), e);
+//        }
+//    }
+//    private void shareIt() {
+//        Uri uri = Uri.fromFile(imagePath);
+//        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+//        sharingIntent.setType("image/*");
+//        String shareBody = "In Tweecher, My highest score with screen shot";
+//        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "My Tweecher score");
+//        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+//        sharingIntent.putExtra(Intent.EXTRA_STREAM, uri);
+//
+//        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+//    }
+
+
+
+
 
 
 
