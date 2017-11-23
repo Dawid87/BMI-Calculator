@@ -161,16 +161,15 @@
 
 
                 <ImageView
-                    android:padding="10dp"
                     android:id="@+id/imageView4"
                     android:layout_width="wrap_content"
                     android:layout_height="312dp"
-                    ads:srcCompat="@drawable/bmi_cats"
-                    android:layout_marginTop="104dp"
-                    android:alpha="0.80"
-                    android:layout_below="@+id/imageButton"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:layout_alignParentStart="true"
+                    android:layout_alignTop="@+id/share"
+                    android:alpha="0.80"
+                    android:padding="10dp"
+                    ads:srcCompat="@drawable/bmi_cats" />
 
                 <ImageButton
                     android:id="@+id/share"
@@ -191,12 +190,11 @@
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/share"
-                    android:layout_alignRight="@+id/share"
                     android:layout_below="@+id/bmiCat"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="21dp"
                     android:background="@drawable/line1"
-                    android:progressDrawable="@drawable/custom_progressbar"/>
+                    android:progressDrawable="@drawable/custom_progressbar" />
 
 
             </RelativeLayout>
