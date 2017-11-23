@@ -1,0 +1,31 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Define the background properties like color etc -->
+    <!--<item android:id="@android:id/background">-->
+        <!--<shape>-->
+            <!--&lt;!&ndash;<gradient&ndash;&gt;-->
+                <!--&lt;!&ndash;&lt;!&ndash;android:&ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;&lt;!&ndash;android:startColor="#B00607"&ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;&lt;!&ndash;android:centerColor="#18B528"&ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;&lt;!&ndash;android:centerY="1.0"&ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;&lt;!&ndash;android:endColor="#CE5118"&ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;&lt;!&ndash;android:angle="270"&ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;/>&ndash;&gt;-->
+        <!--&lt;!&ndash;</shape>&ndash;&gt;-->
+    <!--</item>-->
+
+    <!-- Define the progress properties like start color, end color etc -->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <gradient
+                    android:startColor="#99111111"
+                    android:useLevel="true"
+                    android:centerX="1.0"
+
+                    android:angle="180"
+                    />
+            </shape>
+        </clip>
+    </item>
+</layer-list>

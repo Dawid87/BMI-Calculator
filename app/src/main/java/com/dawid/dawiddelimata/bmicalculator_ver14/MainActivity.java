@@ -39,6 +39,8 @@ import static android.os.Environment.getExternalStorageDirectory;
 
 public class MainActivity extends AppCompatActivity  implements BillingProcessor.IBillingHandler  {
 
+    private Handler handler = new Handler();
+
     BillingProcessor bp;
     //LikeView likeView;
 
@@ -166,14 +168,9 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
         getSupportActionBar().setLogo(R.drawable.scale);                                                // Set toolbar icon
 
 
-//        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar2);
-//
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run(){
-//
-//            }
-//        }).start();
+
+
+
 
 
 
@@ -263,7 +260,7 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
                 double weight = Double.parseDouble(weightStr);
 
                 height /= 100;
-                double bmi = (weight) / (height * height);
+                final double bmi = (weight) / (height * height);
 
                 final EditText bmiSum = (EditText) findViewById(R.id.bmiSum);
                 bmiSum.setText(Double.toString(bmi).format("%.2f", bmi));                              // Round result two places after dot "."
@@ -290,8 +287,23 @@ public class MainActivity extends AppCompatActivity  implements BillingProcessor
                 final TextView bmiCat = (TextView) findViewById(R.id.bmiCat);
                 bmiCat.setText(bmi_cat);
 
+                final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar2);
 
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                       final int bmi2 = (int) bmi + 24;
 
+                        if (bmi2 < 100){
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    progressBar.setProgress(bmi2);
+                                }
+                            });
+                        }
+                    }
+                }).start();
 
             }
 

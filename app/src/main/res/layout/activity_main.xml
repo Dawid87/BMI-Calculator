@@ -194,7 +194,9 @@
                     android:layout_alignEnd="@+id/share"
                     android:layout_alignRight="@+id/share"
                     android:layout_below="@+id/bmiCat"
-                    android:layout_marginTop="21dp" />
+                    android:layout_marginTop="21dp"
+                    android:background="@drawable/line"
+                    android:progressDrawable="@drawable/custom_progressbar"/>
 
 
             </RelativeLayout>

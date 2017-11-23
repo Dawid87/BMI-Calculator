@@ -24,5 +24,11 @@
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
     </style>
 
+    <style name="CustomProgressBarHorizontal" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/custom_progressbar</item>
+        <item name="android:minHeight">1dip</item>
+        <item name="android:maxHeight">2dip</item>
+    </style>
+
 
 </resources>
