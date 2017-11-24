@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:theme="@style/MyTheme"
     android:fitsSystemWindows="true"
-    app:popupTheme="@style/CustomPopUPTheme">
+    app:popupTheme="@style/CustomPopUPTheme"
+    >
 
 </android.support.v7.widget.Toolbar>
