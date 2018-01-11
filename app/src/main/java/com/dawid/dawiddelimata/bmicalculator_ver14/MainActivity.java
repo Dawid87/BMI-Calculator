@@ -28,7 +28,7 @@ import com.google.android.gms.ads.MobileAds;
 
 import java.io.File;
 
-import static com.dawid.dawiddelimata.bmicalculator_ver14.R.drawable.mainmenuback;
+//import static com.dawid.dawiddelimata.bmicalculator_ver14.R.drawable.mainmenuback;
 
 public class MainActivity extends AppCompatActivity  implements BillingProcessor.IBillingHandler  {
 
